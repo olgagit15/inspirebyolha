@@ -186,6 +186,12 @@ button.tag[aria-pressed="true"] { background: var(--text); color: var(--bg); bor
 .case-card .circles .c b { font-size: clamp(10px, 3.3cqw, 16px); }
 .case-card .cv-type .big { font-size: clamp(44px, 22cqw, 84px); }
 .case-card .cv-type .mid { font-size: clamp(22px, 9cqw, 36px); }
+.case-card .cv-tam { background: linear-gradient(160deg, rgba(232,180,192,.28), transparent 70%), var(--surface-2); }
+.case-card .circles .c1 { background: #a85f76; }
+.case-card .circles .c2 { background: #d78da3; }
+.case-card .circles .c3 { background: #f0c5d0; color: #542b38; }
+.case-card .cv-bars .f { background: #d78da3; }
+.case-card .cv-type { background: linear-gradient(135deg, #f8e9ed, #e8b4c0); color: #542b38; }
 .cv-phone { background: #1a1210; display: flex; justify-content: center; align-items: flex-end; padding-top: 8%; }
 .cv-phone img { width: 46%; border-radius: 20px 20px 0 0; }
 
@@ -218,7 +224,7 @@ button.tag[aria-pressed="true"] { background: var(--text); color: var(--bg); bor
 
 /* certifications */
 .certs { display: grid; gap: 16px; }
-.cert { min-width: 0; align-self: start; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; }
+.cert { min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; }
 .cert-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; }
 .cert-heading h3 { font-size: 19px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
 .cert-body { display: grid; gap: 4px; margin-top: 12px; }
@@ -750,7 +756,7 @@ var RECS = [
 ];
 var LI_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>';
 
-var NAV = ['home', 'experience', 'cases', 'speaking', 'certifications', 'recommendations', 'contact'];
+var NAV = ['home', 'experience', 'cases', 'recommendations', 'contact'];
 
 /* ================= state & helpers ================= */
 var lang = 'en';
