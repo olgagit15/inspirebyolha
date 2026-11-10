@@ -10,10 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <script>
   (function () {
-    var d = document.documentElement, t = null;
-    try { t = localStorage.getItem('theme-v2'); } catch (e) {}
-    if (t !== 'light' && t !== 'dark') t = 'light';
-    d.dataset.theme = t;
+    var d = document.documentElement;
+    d.dataset.theme = 'light';
     d.classList.add('js');
   })();
 </script>
@@ -206,7 +204,6 @@ button.tag[aria-pressed="true"] { background: var(--text); color: var(--bg); bor
 .skills-grid { display: grid; gap: 14px; }
 .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 22px; display: grid; gap: 14px; align-content: start; }
 .skill-group h3 { font-size: 17px; font-weight: 500; letter-spacing: -.01em; }
-.skills-hint { color: var(--muted); font-size: 14px; margin-top: 16px; }
 
 /* experience */
 .career { list-style: none; display: grid; }
@@ -214,32 +211,29 @@ button.tag[aria-pressed="true"] { background: var(--text); color: var(--bg); bor
 .career li:first-child { border-top: 0; padding-top: 0; }
 .career li:last-child { padding-bottom: 0; }
 .career-when { font: 500 13.5px/1.4 var(--font-accent); color: var(--muted); }
-.career-role { font-size: clamp(19px, 2.2vw, 24px); line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
-.career-co { color: var(--muted); font-size: 16px; }
+.career-role { display: block; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
+.career-path { display: block; margin-top: 5px; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.career-co { display: block; margin-top: 4px; color: var(--muted); font-size: 16px; }
+.experience-power { margin-top: 20px; }
 
-/* education & certs */
-.edu { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; display: grid; gap: 6px; margin-bottom: 40px; }
-.edu h3 { font-size: 22px; font-weight: 500; letter-spacing: -.02em; line-height: 1.3; }
-.edu p { color: var(--muted); }
-.sub-title { font-size: 24px; font-weight: 500; letter-spacing: -.02em; margin-bottom: 18px; }
+/* certifications */
 .certs { display: grid; gap: 16px; }
-.cert { display: flex; flex-direction: column; text-align: left; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; transition: border-color .2s, transform .2s; }
-button.cert:hover { border-color: var(--accent); transform: translateY(-3px); }
-.cert-img { aspect-ratio: 16 / 10; background: var(--surface-2); overflow: hidden; }
-.cert-img img { width: 100%; height: 100%; object-fit: cover; }
-.cert-img.type { display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); padding: 18px; text-align: center; font: 600 22px/1.15 var(--font-accent); letter-spacing: -.02em; }
-.cert-body { padding: 16px 18px 20px; display: grid; gap: 4px; }
-.cert-body h4 { font-size: 16.5px; font-weight: 500; line-height: 1.35; }
+.cert { min-width: 0; align-self: start; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; }
+.cert-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; }
+.cert-heading h3 { font-size: 19px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
+.cert-body { display: grid; gap: 4px; margin-top: 12px; }
 .cert-body p { color: var(--muted); font-size: 14px; }
+.cert-open { flex: none; }
 
 /* recommendations */
+#recommendations { background: linear-gradient(to bottom, #F1F1F0 0%, #FFFFFF 50%, #FFF5F7 100%); }
 .recs { display: grid; gap: 16px; }
 .rec { display: flex; flex-direction: column; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 22px 22px 18px; box-shadow: var(--shadow); transition: border-color .25s, transform .25s; }
 .rec:hover { border-color: var(--accent-line); }
 html.js .rec.rv.in:hover { transform: translateY(-2px); }
-.rec-mark { display: block; height: 22px; font: 600 56px/.9 var(--font-accent); color: var(--cover); opacity: .9; user-select: none; }
+.rec-mark { display: block; height: 22px; font: 600 56px/.9 var(--font-accent); color: #e8b4c0; user-select: none; }
 .rec blockquote { margin: 0; }
-.rec blockquote p { font-size: 14.5px; line-height: 1.6; color: var(--text); }
+.rec blockquote p { font-size: 14.5px; line-height: 1.6; color: var(--text); text-align: justify; hyphens: auto; }
 .rec-note { color: var(--faint); font-size: 12px; line-height: 1.4; }
 .rec-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 .rec-who { min-width: 0; display: grid; gap: 2px; }
@@ -250,19 +244,27 @@ html.js .rec.rv.in:hover { transform: translateY(-2px); }
 
 /* footer */
 .contact { padding: 96px 0 40px; text-align: center; }
-.contact h2 { font-size: clamp(52px, 11vw, 132px); line-height: 1; font-weight: 500; letter-spacing: -.05em; }
+#contact-footer { background: linear-gradient(to bottom, #FFF5F7 0%, #FFF9FA 28%, #F8E3EA 72%, #F5DDE5 100%); }
+.contact h2 { font-size: clamp(32px, 4vw, 48px); line-height: 1; font-weight: 500; letter-spacing: -.05em; }
 .contact .lead { color: var(--muted); font-size: 18px; margin: 18px auto 36px; max-width: 46ch; }
 .contact-links { display: grid; gap: 12px; max-width: 760px; margin: 0 auto; }
-.contact-link { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 76px; padding: 0 28px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 19px; text-decoration: none; transition: color .18s, border-color .18s; }
-.contact-link:hover { color: var(--accent); border-color: var(--accent); }
+.contact-link { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 76px; padding: 0 28px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 19px; text-decoration: none; transition: background-color .18s, color .18s, border-color .18s; }
+.contact-link:hover { background: color-mix(in srgb, var(--surface) 88%, var(--bg)); color: var(--accent); border-color: var(--accent); }
+#contact-footer .contact-links .contact-link { background: #FFFFFF; color: #252525; border-color: #E8E5E6; transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
+#contact-footer .contact-links .contact-link:hover { background: #F5F5F5; color: #252525; border-color: #E8E5E6; }
+#contact-footer .contact-links .contact-link[data-cv] { background: #FFFFFF; color: #252525; border-color: #E8E5E6; }
+#contact-footer .contact-links .contact-link[data-cv]:hover { background: #F5F5F5; color: #252525; border-color: #E8E5E6; }
+#contact-footer .contact-links .contact-link small { color: inherit; }
 .contact-link .ext { transition: transform .18s; }
 .contact-link:hover .ext { transform: translate(2px, -2px); }
 .contact-link { flex-wrap: wrap; min-width: 0; text-align: center; padding-top: 12px; padding-bottom: 12px; }
 .contact-link small { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
 .footer-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 28px 0 32px; margin-top: 72px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
-.up { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--muted); }
-.up .ic { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--text); color: var(--bg); }
-.up:hover { color: var(--text); }
+.footer-in { background: #111111; color: #FFFFFF; border-color: #111111; transition: background-color .3s ease, border-color .3s ease, color .3s ease; }
+.footer-in:hover { background: #292929; color: #FFFFFF; border-color: #292929; }
+:root[data-theme="dark"] #recommendations,
+:root[data-theme="dark"] #contact-footer { background: var(--bg); }
+:root[data-theme="dark"] .rec-mark { color: var(--cover); opacity: .9; }
 
 /* ---------- case page ---------- */
 .case-page { padding: 28px 0 24px; }
@@ -361,6 +363,13 @@ html.js .rv.in { opacity: 1; translate: none; }
   .header .cv-btn { display: inline-flex; }
   .header .in-btn { display: inline-grid; }
 }
+@media (max-width: 559px) {
+  .contact { padding-top: 64px; }
+  .contact-link:first-child { flex-direction: column; gap: 2px; padding-left: 16px; padding-right: 16px; }
+  .contact-link small { font-size: 13px; }
+  .footer-bar { margin-top: 44px; padding-top: 22px; flex-direction: column; align-items: flex-start; }
+  .footer-bar .footer-in { align-self: flex-end; }
+}
 @media (min-width: 768px) {
   :root { --gutter: 28px; }
   section.block { padding: 96px 0; }
@@ -438,7 +447,7 @@ html.js .rv.in { opacity: 1; translate: none; }
 <footer id="contact-footer">
   <div class="wrap contact" id="contact">
     <h2 class="rv" data-i18n="git">Get in touch</h2>
-    <p class="lead rv" data-i18n="gitLead">Open to Product Manager and Business Analyst roles.</p>
+    <p class="lead rv" data-i18n="gitLead">Open to Product Manager and Business Analyst roles</p>
     <div class="contact-links rv">
       <a class="contact-link" href="mailto:olgatereshchenko555@gmail.com"><span data-i18n="email">Email</span> <small>olgatereshchenko555@gmail.com</small></a>
       <a class="contact-link" href="https://www.linkedin.com/in/olhatereshchenko/" target="_blank" rel="noopener noreferrer"><span data-i18n="linkedin">Connect on LinkedIn</span> <span class="ext" aria-hidden="true">↗</span></a>
@@ -446,7 +455,7 @@ html.js .rv.in { opacity: 1; translate: none; }
     </div>
     <div class="footer-bar">
       <span>© <span id="year">2026</span> <span data-i18n="name">Olga Tereshchenko</span> · <span data-i18n="loc">Bar, Montenegro</span></span>
-      <a class="up" href="#top" id="upLink"><span data-i18n="up">Scroll up</span><span class="ic" aria-hidden="true">↑</span></a>
+      <a class="icon-btn footer-in" href="https://www.linkedin.com/in/olhatereshchenko/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a>
     </div>
   </div>
 </footer>
@@ -483,14 +492,15 @@ var UI = {
   skills: { en: 'Skills', uk: 'Навички' },
   experience: { en: 'Experience', uk: 'Досвід' },
   certifications: { en: 'Certifications', uk: 'Сертифікати' },
+  certificate: { en: 'Certificate', uk: 'Сертифікат' },
   recommendations: { en: 'Recommendations', uk: 'Рекомендації' },
   recTitle: { en: 'What colleagues say', uk: 'Що кажуть колеги' },
   recOrig: { en: 'Original', uk: 'Оригінал англійською' },
   recView: { en: 'View on LinkedIn', uk: 'Переглянути в LinkedIn' },
   recAll: { en: 'See all recommendations on LinkedIn', uk: 'Усі рекомендації в LinkedIn' },
   contact: { en: 'Contact', uk: 'Контакти' },
-  git: { en: 'Get in touch', uk: 'Напишіть мені' },
-  gitLead: { en: 'Open to Product Manager and Business Analyst roles.', uk: 'Відкрита до ролей Product Manager і Business Analyst.' },
+  git: { en: 'Let\'s create something extraordinary', uk: 'Створімо щось надзвичайне' },
+  gitLead: { en: 'Open to Product Manager and Business Analyst roles', uk: 'Відкрита до ролей Product Manager і Business Analyst.' },
   email: { en: 'Email', uk: 'Email' },
   linkedin: { en: 'Connect on LinkedIn', uk: 'Написати в LinkedIn' },
   loc: { en: 'Bar, Montenegro', uk: 'Бар, Чорногорія' },
@@ -515,7 +525,6 @@ var UI = {
   outside: { en: 'Outside work', uk: 'Поза роботою' },
   outsideText: { en: 'I sing — usually on stage.', uk: 'Я співаю — зазвичай на сцені.' },
   casesTitle: { en: 'Cases', uk: 'Кейси' },
-  casesSub: { en: 'Research, analytics and product strategy — each case starts with a question and ends with a decision.', uk: 'Дослідження, аналітика та продуктова стратегія — кожен кейс починається з питання й закінчується рішенням.' },
   all: { en: 'All', uk: 'Усі' },
   genesis: { en: 'Genesis School cases', uk: 'Кейси Genesis School' },
   personal: { en: 'Personal research', uk: 'Власні дослідження' },
@@ -530,13 +539,8 @@ var UI = {
   event: { en: 'Event', uk: 'Подія' },
   venue: { en: 'Venue', uk: 'Місце' },
   skillsTitle: { en: 'Skills', uk: 'Навички' },
-  skillsSub: { en: 'Collected from the cases and the CV.', uk: 'Зібрано з кейсів і резюме.' },
-  skillsHint: { en: 'Tap a skill to highlight the cases where it was used.', uk: 'Натисніть на навичку, щоб підсвітити кейси, де вона використана.' },
   expTitle: { en: 'Experience', uk: 'Досвід' },
-  expSub: { en: 'From legal counsel to product management.', uk: 'Від юриста до продуктового менеджменту.' },
-  eduTitle: { en: 'Education & Certifications', uk: 'Освіта та сертифікати' },
-  education: { en: 'Education', uk: 'Освіта' },
-  certsTitle: { en: 'Certifications & achievements', uk: 'Сертифікати та досягнення' },
+  certsTitle: { en: 'Certifications & Achievements', uk: 'Сертифікати та досягнення' },
   allCases: { en: 'All cases', uk: 'Усі кейси' },
   format: { en: 'Format', uk: 'Формат' },
   teamProject: { en: 'Team project', uk: 'Командний проєкт' },
@@ -671,43 +675,33 @@ var SKILLS = [
     { en: 'Market research', uk: 'Дослідження ринку', c: [MR] },
     { en: 'TAM / SAM / SOM', uk: 'TAM / SAM / SOM', c: [MR] },
     { en: 'Competitive analysis', uk: 'Конкурентний аналіз', c: [MR, SM] },
-    { en: 'Business model analysis', uk: 'Аналіз бізнес-моделей', c: [MR] },
-    { en: 'Go-to-market planning', uk: 'Планування go-to-market', c: [MR] },
-    { en: 'Positioning', uk: 'Позиціювання', c: [SM] },
-    { en: 'Product analysis', uk: 'Аналіз продукту', c: [SM] }
+    { en: 'Business model analysis', uk: 'Аналіз бізнес-моделей', c: [MR] }
   ] },
   { g: { en: 'Analytics & Metrics', uk: 'Аналітика та метрики' }, wide: true, items: [
     { en: 'Product analytics', uk: 'Продуктова аналітика', c: [] },
     { en: 'Funnel & cohort analysis', uk: 'Аналіз воронки та когорт', c: [ES] },
     { en: 'LTV / CAC / CPI', uk: 'LTV / CAC / CPI', c: [MR, ES] },
     { en: 'Retention analysis', uk: 'Аналіз утримання', c: [ES] },
-    { en: 'Email metrics (OR, CTR, CTOR)', uk: 'Email-метрики (OR, CTR, CTOR)', c: [ES] },
-    { en: 'ROI analysis', uk: 'Аналіз ROI', c: [ES] },
-    { en: 'Revenue forecasting', uk: 'Прогнозування виручки', c: [ES] },
     { en: 'Hypothesis formulation & prioritization', uk: 'Формулювання та пріоритизація гіпотез', c: [RA, ES] },
     { en: 'Qualitative & quantitative analysis', uk: 'Якісний і кількісний аналіз', c: [RA] }
   ] },
   { g: { en: 'Product & UX', uk: 'Продукт і UX' }, items: [
     { en: 'User flow analysis', uk: 'Аналіз користувацьких сценаріїв', c: [SM] },
     { en: 'UX prototyping with AI tools', uk: 'UX-прототипування з AI', c: [SM] },
-    { en: 'Funnel design', uk: 'Дизайн воронки', c: [MR] },
-    { en: 'Creative strategy', uk: 'Креативна стратегія', c: [MR] }
+    { en: 'Funnel design', uk: 'Дизайн воронки', c: [MR] }
   ] },
   { g: { en: 'Tools', uk: 'Інструменти' }, tool: true, wide: true, items: [
     { en: 'AppMagic', c: [MR] }, { en: 'SensorTower', c: [MR] }, { en: 'SimilarWeb', c: [MR] }, { en: 'Meta Ad Library', c: [MR] },
     { en: 'Google Ads Transparency', c: [MR] }, { en: 'TikTok Creative Center', c: [MR] }, { en: 'BigSpy', c: [MR] }, { en: 'Google Trends', c: [MR] },
     { en: 'Figma / Figma Sites / Figma Make', c: [MR, SM] }, { en: 'Claude', c: [RA] }, { en: 'Excel / Google Sheets', c: [RA, ES] },
     { en: 'Jira', c: [] }, { en: 'Confluence', c: [] }, { en: 'Linear', c: [] }, { en: 'Notion', c: [] }, { en: 'Miro', c: [] }, { en: 'Lovable', c: [] }
-  ] },
-  { g: { en: 'Soft', uk: 'Soft skills' }, items: [
-    { en: 'Presenting and defending findings', uk: 'Презентація та захист висновків', c: [ES] },
-    { en: 'Presenting to a jury', uk: 'Презентація перед журі', c: [SM] },
-    { en: 'Team project delivery', uk: 'Командна реалізація проєкту', c: [SM] },
-    { en: 'Cross-functional stakeholder alignment', uk: 'Узгодження з крос-функціональними стейкхолдерами', c: [] },
-    { en: 'Ownership', uk: 'Ownership', c: [] },
-    { en: 'Leadership & mentoring', uk: 'Лідерство та менторство', c: [] },
-    { en: 'Meeting facilitation', uk: 'Фасилітація зустрічей', c: [] }
   ] }
+];
+var POWER_SKILLS = [
+  { en: 'Ownership', uk: 'Ownership' },
+  { en: 'Leadership & mentoring', uk: 'Лідерство та менторство' },
+  { en: 'Meeting facilitation', uk: 'Фасилітація зустрічей' },
+  { en: 'Product demo', uk: 'Продуктове демо' }
 ];
 
 var TALKS = [
@@ -722,17 +716,17 @@ var TALKS = [
 ];
 
 var JOBS = [
-  { when: { en: 'Nov 2024 – Jul 2026', uk: 'лис 2024 – лип 2026' }, role: 'AI Quality Engineer / Data Analyst', co: 'Roosh' },
-  { when: { en: 'Oct 2022 – Mar 2024', uk: 'жов 2022 – бер 2024' }, role: 'Data Annotation Project Manager', co: 'Mobilunity' },
-  { when: { en: 'Sep 2021 – Apr 2022', uk: 'вер 2021 – кві 2022' }, role: 'Data Annotator', co: 'Label Your Data' },
+  { when: { en: 'Nov 2024 – Jul 2026', uk: 'лис 2024 – лип 2026' }, role: 'AI Quality Engineer', path: { en: 'Integrating QA and Product Management', uk: 'Інтегрую QA та Product Management' }, co: 'Roosh' },
+  { when: { en: 'Oct 2022 – Mar 2024', uk: 'жов 2022 – бер 2024' }, role: 'Data Annotation Project Manager', path: { en: 'Promoted from Data Annotator to Project Manager', uk: 'Підвищення з Data Annotator до Project Manager' }, co: 'Mobilunity' },
+  { when: { en: 'Sep 2021 – Apr 2022', uk: 'вер 2021 – кві 2022' }, role: 'Data Annotator', path: { en: 'Appointed Assistant Supervisor in recognition of high-quality work', uk: 'Призначена Assistant Supervisor за високу якість роботи' }, co: 'Label Your Data' },
   { when: { en: 'Jul 2019 – Aug 2021', uk: 'лип 2019 – сер 2021' }, role: { en: 'Legal Counsel', uk: 'Юрисконсульт' }, co: { en: 'Department of Land Resources', uk: 'Департамент земельних ресурсів' } }
 ];
 
 var CERTS = [
   { img: 'assets/cert-genesis.webp', title: { en: 'IT Product School', uk: 'IT Product School' }, org: 'Genesis Academy', date: { en: 'May 2026 · 3 months', uk: 'травень 2026 · 3 місяці' } },
   { title: { en: 'Product Metrics and Analytics', uk: 'Product Metrics and Analytics' }, org: { en: 'Andrii Mandrika’s course', uk: 'Курс Андрія Мандріки' }, date: { en: 'Aug – Oct 2026', uk: 'серп – жовт 2026' } },
-  { img: 'assets/cert-diia.webp', title: { en: '3rd place, Diia.AI Contest', uk: '3 місце, Diia.AI Contest' }, org: { en: 'Ministry of Digital Transformation of Ukraine · team ShiftWave AI', uk: 'Мінцифри України · команда ShiftWave AI' }, date: { en: 'Dec 2025', uk: 'грудень 2025' } },
-  { img: 'assets/cert-kaizen.webp', title: { en: 'Leadership Toolbox course v1.0', uk: 'Курс Leadership Toolbox v1.0' }, org: 'Kaizen', date: { en: 'Sep – Oct 2024', uk: 'вер – жов 2024' } }
+  { img: 'assets/cert-diia.webp', title: { en: 'Diia.AI Contest', uk: 'Diia.AI Contest' }, org: { en: 'Ministry of Digital Transformation of Ukraine · team ShiftWave AI', uk: 'Мінцифри України · команда ShiftWave AI' }, date: { en: 'Dec 2025', uk: 'грудень 2025' } },
+  { img: 'assets/cert-kaizen.webp', title: { en: 'Leadership Toolbox course', uk: 'Курс Leadership Toolbox' }, org: 'Kaizen', date: { en: 'Sep – Oct 2024', uk: 'вер – жовт 2024' } }
 ];
 
 /* Quotes are verbatim from LinkedIn (English originals); names are intentionally not shown.
@@ -811,9 +805,8 @@ function caseCard(c) {
     '<div class="card-foot"><span class="btn btn-primary btn-sm">' + u('readCase') + ' <span class="arr" aria-hidden="true">→</span></span>' +
     (c.team ? '<span class="tag">' + u('teamProject') + '</span>' : '') + '</div></div></a>';
 }
-function countSeg(s) { return CASES.filter(function (c) { return s === 'all' || c.seg === s; }).length; }
 function renderHome() {
-  var segs = ['all', SEG.genesis, SEG.personal];
+  var segs = ['all'];
   var html = '' +
   '<section class="hero" id="home" data-sec="home"><div class="wrap hero-grid">' +
     '<div class="hero-photo rv"><img src="assets/olga.webp" alt="' + u('name') + '" width="720" height="1053" fetchpriority="high"></div>' +
@@ -824,41 +817,43 @@ function renderHome() {
       '<p class="domains">' + u('domains') + ': <b>Healthcare</b> · <b>Legaltech</b></p></div>' +
   '</div></section>' +
 
-  '<section class="block" id="experience" data-sec="experience" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('experience') + '</span><h2 class="sec-title">' + u('expTitle') + '</h2><p class="sec-sub">' + u('expSub') + '</p></div>' +
+  '<section class="block" id="experience" data-sec="experience" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('expTitle') + '</h2></div>' +
     '<div class="about-card rv"><ol class="career">' + JOBS.map(function (j) {
-      return '<li><span class="career-when">' + t(j.when) + '</span><span class="career-role">' + t(j.role) + '</span><span class="career-co">' + t(j.co) + '</span></li>';
+      return '<li><span class="career-when">' + t(j.when) + '</span><div><span class="career-role">' + t(j.role) + '</span>' + (j.path ? '<span class="career-path">' + t(j.path) + '</span>' : '') + '<span class="career-co">' + t(j.co) + '</span></div></li>';
     }).join('') + '</ol>' +
     '<div class="about-side"><div class="fact"><p class="eyebrow">' + u('domains') + '</p><p>Healthcare · Legaltech</p></div>' +
-    '<div class="fact"><p class="eyebrow">' + u('langs') + '</p><p>' + u('langsText') + '</p></div></div></div></div></section>' +
+    '<div class="fact"><p class="eyebrow">' + u('langs') + '</p><p>' + u('langsText') + '</p></div></div></div>' +
+    '<div class="skill-group experience-power rv"><h3>Power skills</h3><div class="tags">' + POWER_SKILLS.map(function (s) {
+      return '<span class="tag skill">' + t(s) + '</span>';
+    }).join('') + '</div></div></div></section>' +
 
-  '<section class="block" id="cases" data-sec="cases" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('cases') + ' · ' + CASES.length + '</span><h2 class="sec-title">' + u('casesTitle') + '</h2><p class="sec-sub">' + u('casesSub') + '</p></div>' +
+  '<section class="block" id="cases" data-sec="cases" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('casesTitle') + '</h2></div>' +
     '<div class="filters rv" role="group" aria-label="' + u('cases') + '">' + segs.map(function (s) {
-      return '<button type="button" class="filter" data-filter="' + s + '" aria-pressed="' + (filter === s) + '">' + u(s) + '<span class="n">' + countSeg(s) + '</span></button>';
+      return '<button type="button" class="filter" data-filter="' + s + '" aria-pressed="' + (filter === s) + '">' + u(s) + '</button>';
     }).join('') + '</div><div id="hlNote"></div>' +
     '<div class="cases-grid">' + CASES.map(caseCard).join('') + '</div><p class="empty-note" id="emptyNote" hidden>' + u('empty') + '</p></div></section>' +
 
-  '<section class="block" id="speaking" data-sec="speaking" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('speaking') + '</span><h2 class="sec-title">' + u('speakingTitle') + '</h2><p class="sec-sub">' + u('speakingSub') + '</p></div>' +
+  '<section class="block" id="speaking" data-sec="speaking" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('speakingTitle') + '</h2></div>' +
     TALKS.map(function (k) {
       return '<article class="talk rv"><div class="talk-date"><span class="badge" style="align-self:flex-start;background:var(--surface)">' + u('speaker') + '</span><div><div class="d">' + k.d + '</div><div class="m">' + t(k.m) + '</div></div></div>' +
         '<div><h3>' + t(k.title) + '</h3><div class="talk-meta"><span>' + u('event') + ': <b>' + t(k.event) + '</b></span><span>' + u('venue') + ': <b>' + t(k.venue) + '</b></span></div>' +
         '<p class="desc">' + t(k.desc) + '</p><div class="tags">' + t(k.tags).map(function (g) { return '<span class="tag">' + g + '</span>'; }).join('') + '</div></div></article>';
     }).join('') + '</div></section>' +
 
-  '<section class="block" id="skills" data-sec="skills" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('skills') + '</span><h2 class="sec-title">' + u('skillsTitle') + '</h2><p class="sec-sub">' + u('skillsSub') + '</p></div>' +
+  '<section class="block" id="skills" data-sec="skills" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('skillsTitle') + '</h2></div>' +
     '<div class="skills-grid">' + SKILLS.map(function (g) {
       return '<div class="skill-group rv' + (g.wide ? ' wide' : '') + '"><h3>' + t(g.g) + '</h3><div class="tags">' + g.items.map(function (s) {
         var cls = 'tag ' + (g.tool ? 'tool' : 'skill') + (s.c.length >= 2 ? ' key' : '');
         if (!s.c.length) return '<span class="' + cls + '">' + t(s) + '</span>';
         return '<button type="button" class="' + cls + '" data-skill="' + s.en + '" aria-pressed="' + (highlight === s.en) + '">' + t(s) + '</button>';
       }).join('') + '</div></div>';
-    }).join('') + '</div><p class="skills-hint">' + u('skillsHint') + '</p></div></section>' +
+    }).join('') + '</div></div></section>' +
 
-  '<section class="block" id="certifications" data-sec="certifications" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('certifications') + '</span><h2 class="sec-title">' + u('eduTitle') + '</h2></div>' +
-    '<div class="edu rv"><p class="eyebrow">' + u('education') + ' · 2015 – 2019</p><h3>' + (lang === 'uk' ? 'Національна академія внутрішніх справ України' : 'National Academy of Internal Affairs of Ukraine') + '</h3><p>' + (lang === 'uk' ? 'Бакалавр права' : 'Bachelor of Laws') + '</p></div>' +
-    '<h3 class="sub-title rv">' + u('certsTitle') + '</h3><div class="certs">' + CERTS.map(function (c) {
-      var body = '<div class="cert-body"><h4>' + t(c.title) + '</h4><p>' + t(c.org) + '</p><p>' + t(c.date) + '</p></div>';
-      if (!c.img) return '<div class="cert rv"><div class="cert-img type">' + t(c.title) + '</div>' + body + '</div>';
-      return '<button type="button" class="cert rv" data-lb="' + c.img + '" data-cap="' + t(c.title) + ' — ' + t(c.org) + '"><div class="cert-img"><img src="' + c.img + '" alt="' + t(c.title) + '" loading="lazy" width="1600" height="900"></div>' + body + '</button>';
+  '<section class="block" id="certifications" data-sec="certifications" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('certsTitle') + '</h2></div>' +
+    '<div class="certs">' + CERTS.map(function (c) {
+      var body = '<div class="cert-body"><p>' + t(c.org) + '</p><p>' + t(c.date) + '</p></div>';
+      var action = c.img ? '<button type="button" class="btn btn-secondary btn-sm cert-open" data-lb="' + c.img + '" data-cap="' + t(c.title) + '" aria-label="' + u('certificate') + ': ' + t(c.title) + '">' + u('certificate') + '</button>' : '';
+      return '<article class="cert rv"><div class="cert-heading"><h3>' + t(c.title) + '</h3>' + action + '</div>' + body + '</article>';
     }).join('') + '</div></div></section>' +
 
   '<section class="block" id="recommendations" data-sec="recommendations" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('recommendations') + '</span><h2 class="sec-title">' + u('recTitle') + '</h2></div>' +
@@ -869,7 +864,7 @@ function renderHome() {
         '<div class="rec-foot"><div class="rec-who"><p class="rec-role">' + t(r.role) + '</p><p class="rec-meta">' + t(r.rel) + ' \u00B7 ' + t(r.when) + '</p></div>' +
         '<a class="icon-btn rec-in" href="' + r.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + u('recView') + '" title="' + u('recView') + '">' + LI_SVG + '</a></div></article>';
     }).join('') + '</div>' +
-    '<div class="recs-more rv"><a class="btn btn-secondary" href="' + REC_URL + '" target="_blank" rel="noopener noreferrer">' + u('recAll') + ' <span class="arr" aria-hidden="true">\u2197</span></a></div></div></section>';
+    '<div class="recs-more rv"><a class="btn btn-primary" href="' + REC_URL + '" target="_blank" rel="noopener noreferrer">' + u('recAll') + ' <span class="arr" aria-hidden="true">\u2197</span></a></div></div></section>';
   return html;
 }
 
@@ -1017,7 +1012,7 @@ function applyHighlight() {
 
 /* ================= events ================= */
 document.addEventListener('click', function (e) {
-  var el = e.target.closest('[data-cv],[data-filter],[data-skill],[data-clear],[data-lang],[data-lb],#themeBtn,#menuBtn,#upLink,[data-toc]');
+  var el = e.target.closest('[data-cv],[data-filter],[data-skill],[data-clear],[data-lang],[data-lb],#themeBtn,#menuBtn,[data-toc]');
   if (!el) {
     var a = e.target.closest('a[href^="#/"]');
     if (a && a.getAttribute('href') === location.hash) { e.preventDefault(); render(true); }
@@ -1027,7 +1022,6 @@ document.addEventListener('click', function (e) {
   else if (el.dataset.skill) {
     highlight = highlight === el.dataset.skill ? null : el.dataset.skill;
     filter = 'all'; applyFilter(); applyHighlight();
-    if (highlight) $('#cases').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   }
   else if (el.hasAttribute('data-clear')) { highlight = null; applyHighlight(); }
   else if (el.dataset.lang) {
@@ -1041,10 +1035,8 @@ document.addEventListener('click', function (e) {
   else if (el.id === 'themeBtn') {
     var th = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = th;
-    try { localStorage.setItem('theme-v2', th); } catch (x) {}
   }
   else if (el.id === 'menuBtn') { var open = !$('#mobileNav').classList.contains('open'); $('#mobileNav').classList.toggle('open', open); el.setAttribute('aria-expanded', String(open)); }
-  else if (el.id === 'upLink') { e.preventDefault(); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }
   else if (el.dataset.toc) { e.preventDefault(); var s = document.getElementById(el.dataset.toc); if (s) s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
 });
 function closeMenu() { $('#mobileNav').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false'); }
