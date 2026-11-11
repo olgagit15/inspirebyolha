@@ -283,6 +283,51 @@ function applyHighlight() {
 /* ================= events ================= */
 document.addEventListener('click', function (e) {
   var el = e.target.closest('[data-cv],[data-filter],[data-skill],[data-clear],[data-lang],[data-lb],#themeBtn,#menuBtn,[data-toc]');
+  var cvLink = e.target.closest('[data-cv]');
+  var cvDownload = e.target.closest('#cvvDl');
+  var navLink = e.target.closest('#nav a, #mobileNav a');
+  var languageButton = e.target.closest('[data-lang]');
+  var caseCardEl = e.target.closest('.case-card');
+  var imageButton = e.target.closest('[data-lb]');
+  var contactLink = e.target.closest('a[href^="mailto:"], a[href*="linkedin.com"]');
+
+  // Відстежуємо лише потрібні взаємодії, не передаючи персональні дані.
+  if (cvLink) {
+    if (typeof gtag === 'function') gtag('event', 'cv_open', { location: cvLink.closest('#contact-footer') ? 'footer' : 'header' });
+  }
+  if (cvDownload && typeof gtag === 'function') gtag('event', 'cv_download');
+  if (navLink) {
+    var href = navLink.getAttribute('href') || '';
+    var linkTarget = href.indexOf('#/') === 0 ? href : (navLink.hasAttribute('data-cv') ? 'cv' : 'linkedin');
+    if (typeof gtag === 'function') gtag('event', 'nav_click', {
+      link_text: navLink.textContent.trim(),
+      link_target: linkTarget
+    });
+  }
+  if (languageButton && languageButton.dataset.lang !== lang && typeof gtag === 'function') {
+    gtag('event', 'language_change', { language: languageButton.dataset.lang });
+  }
+  if (contactLink) {
+    var contactLocation = contactLink.closest('#header') ? 'header' : (contactLink.closest('#contact-footer') ? 'footer' : '');
+    if (contactLocation && typeof gtag === 'function') {
+      gtag('event', 'contact_click', {
+        method: contactLink.getAttribute('href').indexOf('mailto:') === 0 ? 'email' : 'linkedin',
+        location: contactLocation
+      });
+    }
+  }
+  if (caseCardEl) {
+    var caseTitle = caseCardEl.querySelector('.case-title');
+    if (caseTitle && typeof gtag === 'function') gtag('event', 'case_open', { case_title: caseTitle.textContent.trim() });
+  }
+  if (imageButton && typeof gtag === 'function') {
+    var casePage = imageButton.closest('.case-page');
+    var caseHeading = casePage && casePage.querySelector('h1');
+    var imageParams = {};
+    if (caseHeading) imageParams.case_title = caseHeading.textContent.trim();
+    gtag('event', 'image_open', imageParams);
+  }
+
   if (!el) {
     var a = e.target.closest('a[href^="#/"]');
     if (a && a.getAttribute('href') === location.hash) { e.preventDefault(); render(true); }
@@ -305,6 +350,7 @@ document.addEventListener('click', function (e) {
   else if (el.id === 'themeBtn') {
     var th = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = th;
+    if (typeof gtag === 'function') gtag('event', 'theme_toggle', { theme: th });
   }
   else if (el.id === 'menuBtn') { var open = !$('#mobileNav').classList.contains('open'); $('#mobileNav').classList.toggle('open', open); el.setAttribute('aria-expanded', String(open)); }
   else if (el.dataset.toc) { e.preventDefault(); var s = document.getElementById(el.dataset.toc); if (s) s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
@@ -339,7 +385,17 @@ $('#lbClose').addEventListener('click', function () { lb.close(); });
 lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
 
 window.addEventListener('scroll', function () { $('#header').classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
-window.addEventListener('hashchange', function () { if (!location.hash || location.hash.indexOf('#/') === 0) render(true); });
+window.addEventListener('hashchange', function () {
+  if (!location.hash || location.hash.indexOf('#/') === 0) {
+    render(true);
+    // Початковий page_view уже надсилає gtag('config').
+    if (typeof gtag === 'function') gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: location.href,
+      page_path: location.hash || '/'
+    });
+  }
+});
 
 $('#year').textContent = new Date().getFullYear();
 applyStatic();

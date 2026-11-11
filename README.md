@@ -14,6 +14,7 @@ The site includes a home page with experience, case studies, skills, speaking, c
 |---|---|
 | [make-changes.md](docs/make-changes.md) | How to preview the portfolio, update its content, add a case, and check changes |
 | [design-system.md](docs/design-system.md) | Colors, fonts, and layout styles used throughout the portfolio |
+| [analytics-events.md](docs/analytics-events.md) | GA4 events, their parameters, privacy notes, and browser verification |
 
 ## Deploy
 
