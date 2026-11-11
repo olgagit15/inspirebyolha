@@ -1,6 +1,6 @@
 # Google Analytics 4 Events
 
-The site uses Google Analytics 4 through `gtag.js` with measurement ID `G-EY52DDGH3L`. Interaction events are sent by one delegated click handler in `js/app.js`. Each call checks that `gtag` is available.
+The site uses Google Analytics 4 through one `gtag.js` integration. During migration, it is configured for the new measurement ID `G-3KGC2RVNBZ` and the legacy ID `G-EY52DDGH3L`. Keep the legacy configuration until the new property has been verified, then remove it. Interaction events are sent by one delegated click handler in `js/app.js`. Each call checks that `gtag` is available.
 
 ## Events
 
@@ -16,7 +16,7 @@ The site uses Google Analytics 4 through `gtag.js` with measurement ID `G-EY52DD
 | `image_open` | An element with `[data-lb]` is clicked to open the lightbox | `case_title`, when the image is on a case page; omitted for other images |
 | `page_view` | The app handles a change to the SPA hash route | `page_title`, `page_location`, `page_path` |
 
-The initial `page_view` is not sent separately: it is already sent by `gtag('config', 'G-EY52DDGH3L')`. For subsequent routes, `page_path` is the hash, or `/` when the hash is empty.
+The initial `page_view` is not sent separately: each configured property receives it from `gtag('config')`. For subsequent routes, one `page_view` event call is sent per hash change, with `page_path` set to the hash or `/` when the hash is empty. During migration, each configured property receives one copy of each event; there is no duplicate event within a property.
 
 ## Privacy
 
@@ -27,7 +27,7 @@ Event parameters do not include email addresses, LinkedIn profile URLs, or other
 1. Open the site, press `F12` or open DevTools, and select the **Network** tab.
 2. Enable **Preserve log** and enter `collect` in the request filter.
 3. Perform the relevant action on the site and select the corresponding GA4 request.
-4. In the request parameters, check `en` (the event name) and the parameters listed above.
+4. In the request parameters, check `tid=G-3KGC2RVNBZ`, `en` (the event name), and the parameters listed above. During migration, a corresponding request for `tid=G-EY52DDGH3L` is expected.
 5. Test each `location` where applicable, both language and theme changes, and the lightbox on and off a case page.
 
 | Action to test | `en` value |
