@@ -300,6 +300,7 @@ document.addEventListener('click', function (e) {
     var href = navLink.getAttribute('href') || '';
     var linkTarget = href.indexOf('#/') === 0 ? href : (navLink.hasAttribute('data-cv') ? 'cv' : 'linkedin');
     if (typeof gtag === 'function') gtag('event', 'nav_click', {
+      location: navLink.closest('#mobileNav') ? 'mobile_nav' : 'header',
       link_text: navLink.textContent.trim(),
       link_target: linkTarget
     });
@@ -308,7 +309,7 @@ document.addEventListener('click', function (e) {
     gtag('event', 'language_change', { language: languageButton.dataset.lang });
   }
   if (contactLink) {
-    var contactLocation = contactLink.closest('#header') ? 'header' : (contactLink.closest('#contact-footer') ? 'footer' : '');
+    var contactLocation = contactLink.closest('#header') ? 'header' : (contactLink.closest('#contact-footer') ? 'footer' : (contactLink.closest('.hero-cta') ? 'hero' : ''));
     if (contactLocation && typeof gtag === 'function') {
       gtag('event', 'contact_click', {
         method: contactLink.getAttribute('href').indexOf('mailto:') === 0 ? 'email' : (contactLink.getAttribute('href').indexOf('t.me/') > -1 ? 'telegram' : 'linkedin'),
@@ -318,7 +319,10 @@ document.addEventListener('click', function (e) {
   }
   if (caseCardEl) {
     var caseTitle = caseCardEl.querySelector('.case-title');
-    if (caseTitle && typeof gtag === 'function') gtag('event', 'case_open', { case_title: caseTitle.textContent.trim() });
+    if (caseTitle && typeof gtag === 'function') gtag('event', 'case_open', {
+      case_id: caseCardEl.dataset.id,
+      case_title: caseTitle.textContent.trim()
+    });
   }
   if (imageButton && typeof gtag === 'function') {
     var casePage = imageButton.closest('.case-page');
