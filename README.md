@@ -4,40 +4,25 @@ A bilingual, responsive portfolio for Product Manager. It is a static website bu
 
 The site includes a home page with experience, case studies, skills, speaking, certifications, and recommendations, plus individual case pages. English and Ukrainian content, theme switching, case filtering, image lightboxes, and the CV viewer are handled in the browser.
 
-## Project structure
+## Portfolio preview
 
-```text
-site/
-├── index.html                 # Document shell, shared navigation/footer/dialogs
-├── css/
-│   └── styles.css             # Global styles, theme tokens, responsive layouts
-├── js/
-│   ├── app.js                 # Routing, interactions, and page rendering
-│   ├── data.js                # Translations and portfolio content
-│   └── blocks/
-│       ├── case-card.js       # Reusable card used in the Cases grid
-│       └── case-section.js    # Reusable section used in each case Story
-└── assets/
-    ├── documents/             # CV and other downloadable documents
-    └── images/
-        ├── profile/           # Profile photos
-        ├── certificates/      # Certificate images
-        └── cases/             # Case-specific screenshots and creative assets
-            ├── email-subscription/
-            ├── market-research/
-            ├── review-analysis/
-            └── strava-match/
-```
+![Portfolio homepage preview](docs/images/portfolio-home.png)
 
-Scripts are regular browser scripts loaded in dependency order at the end of `site/index.html`: portfolio data, reusable blocks, then the app. Keep this order when adding another script.
+## Main files
+
+| File | Purpose |
+|---|---|
+| [`site/index.html`](site/index.html) | Page shell |
+| [`site/js/app.js`](site/js/app.js) | Page rendering and interactions |
+| [`site/js/data.js`](site/js/data.js) | Portfolio content and translations |
+| [`site/css/styles.css`](site/css/styles.css) | Visual styles and responsive layouts |
 
 ## Documentation
 
 | Doc | What it covers |
 |---|---|
-| [README.md](README.md) | Project overview and repository structure |
-| [make-changes.md](docs/make-changes.md) | Local preview, editing content, adding cases, checking changes, and deployment |
-| [design-system.md](docs/design-system.md) | Colors, typography, design tokens, reusable components, breakpoints, accessibility, and style usage |
+| [make-changes.md](docs/make-changes.md) | How to preview the portfolio, update its content, add a case, and check changes |
+| [design-system.md](docs/design-system.md) | Colors, fonts, and layout styles used throughout the portfolio |
 
 ## Deploy
 
