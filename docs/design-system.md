@@ -1,6 +1,6 @@
 # Design system
 
-This document describes the styles currently implemented in `site/css/styles.css`. It is a practical reference for extending the existing portfolio, not a separate design specification. When a value changes in CSS, update this document to match.
+This document describes the styles currently implemented in `css/styles.css`. It is a practical reference for extending the existing portfolio, not a separate design specification. When a value changes in CSS, update this document to match.
 
 ## Visual direction
 
@@ -78,7 +78,7 @@ Reuse these existing classes and patterns before creating new ones:
 | Skills/tools block | `.kit`, `.kit-row` | Skills and tools at the end of a case |
 | Reveal | `.rv`, `.rv.in` | One-time entrance transition when JavaScript is active |
 
-Case-card and Story-section markup is implemented in `site/js/blocks/`. For content-only changes, edit `site/js/data.js`; add a reusable visual block when the same pattern is needed in multiple places.
+Case-card and Story-section markup is implemented in `js/blocks/`. For content-only changes, edit `js/data.js`; add a reusable visual block when the same pattern is needed in multiple places.
 
 ## Layout and responsive behavior
 

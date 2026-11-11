@@ -17,4 +17,4 @@ The site includes a home page with experience, case studies, skills, speaking, c
 
 ## Deploy
 
-This is a static site. Configure GitHub Pages, Netlify, Vercel, or another static host to publish the `site/` directory as the site root; no compilation is needed. Before publishing, review the CV and other personal documents/images in `site/assets/` and only make publicly available materials that are intended to be shared.
+This is a static site. Configure GitHub Pages, Netlify, Vercel, or another static host to publish the repository root as the site root; no compilation is needed. Before publishing, review the CV and other personal documents/images in `assets/` and only make publicly available materials that are intended to be shared.
