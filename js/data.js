@@ -237,7 +237,7 @@ var TALKS = [
 ];
 
 var JOBS = [
-  { when: { en: 'Nov 2024 – Jul 2026', uk: 'лис 2024 – лип 2026' }, role: 'AI Quality Engineer', path: { en: 'Integrating QA and Product Management', uk: 'Інтегрую QA та Product Management' }, co: 'Roosh' },
+  { when: { en: 'Nov 2024 – Jul 2026', uk: 'лис 2024 – лип 2026' }, role: 'AI Quality Engineer', co: 'Roosh' },
   { when: { en: 'Oct 2022 – Mar 2024', uk: 'жов 2022 – бер 2024' }, role: 'Data Annotation Project Manager', path: { en: 'Promoted from Data Annotator to Project Manager', uk: 'Підвищення з Data Annotator до Project Manager' }, co: 'Mobilunity' },
   { when: { en: 'Sep 2021 – Apr 2022', uk: 'вер 2021 – кві 2022' }, role: 'Data Annotator', path: { en: 'Appointed Assistant Supervisor in recognition of high-quality work', uk: 'Призначена Assistant Supervisor за високу якість роботи' }, co: 'Label Your Data' },
   { when: { en: 'Jul 2019 – Aug 2021', uk: 'лип 2019 – сер 2021' }, role: { en: 'Legal Counsel', uk: 'Юрисконсульт' }, co: { en: 'Department of Land Resources', uk: 'Департамент земельних ресурсів' } }
