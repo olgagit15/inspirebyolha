@@ -62,7 +62,7 @@ function figure(src, w, h, cap, cls) {
 /* ================= home ================= */
 function caseCard(c) { return PortfolioBlocks.caseCard(c, t, u, cover); }
 function renderHome() {
-  var segs = ['all'];
+  var segs = [];
   var html = '' +
   '<section class="hero" id="home" data-sec="home"><div class="wrap hero-grid">' +
     '<div class="hero-photo rv"><img src="assets/images/profile/olga.webp" alt="' + u('name') + '" width="720" height="1053" fetchpriority="high"></div>' +
@@ -83,9 +83,9 @@ function renderHome() {
     }).join('') + '</div></div></div></section>' +
 
   '<section class="block" id="cases" data-sec="cases" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('casesTitle') + '</h2></div>' +
-    '<div class="filters rv" role="group" aria-label="' + u('cases') + '">' + segs.map(function (s) {
+    (segs.length ? '<div class="filters rv" role="group" aria-label="' + u('cases') + '">' + segs.map(function (s) {
       return '<button type="button" class="filter" data-filter="' + s + '" aria-pressed="' + (filter === s) + '">' + u(s) + '</button>';
-    }).join('') + '</div><div id="hlNote"></div>' +
+    }).join('') + '</div>' : '') + '<div id="hlNote"></div>' +
     '<div class="cases-grid">' + CASES.map(caseCard).join('') +
       '<article class="cases-coming rv" aria-label="' + u('moreCasesTitle') + ' ' + u('moreCasesSoon') + '">' +
         '<div class="cases-coming-art" aria-hidden="true"><div class="cases-coming-orbit"></div>' +

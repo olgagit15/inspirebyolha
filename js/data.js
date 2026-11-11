@@ -47,8 +47,6 @@ var UI = {
   outsideText: { en: 'I sing — usually on stage.', uk: 'Я співаю — зазвичай на сцені.' },
   casesTitle: { en: 'Cases', uk: 'Кейси' },
   all: { en: 'All', uk: 'Усі' },
-  genesis: { en: 'Genesis School cases', uk: 'Кейси Genesis School' },
-  personal: { en: 'Personal research', uk: 'Власні дослідження' },
   moreCasesTitle: { en: 'More cases', uk: 'Нові кейси' },
   moreCasesSoon: { en: 'are coming soon', uk: 'незабаром' },
   readCase: { en: 'Read case', uk: 'Читати кейс' },
