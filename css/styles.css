@@ -413,7 +413,13 @@ html.js .rv.in { opacity: 1; translate: none; }
   .points { grid-template-columns: repeat(3, 1fr); }
   .edu { padding: 32px; }
 }
+@media (min-width: 900px) {
+  .nav { display: flex; }
+  .menu-btn { display: none; }
+  .header .cv-btn, .header .in-btn { display: none; }
+}
 @media (min-width: 1024px) {
+  .header .cv-btn { display: inline-flex; }
   section.block { padding: 120px 0; }
   .hero-grid { grid-template-columns: 360px 1fr; gap: 72px; }
   .about-card { grid-template-columns: 1fr 300px; gap: 64px; padding: 56px; }
@@ -428,6 +434,7 @@ html.js .rv.in { opacity: 1; translate: none; }
 @media (min-width: 1280px) {
   .nav { display: flex; }
   .menu-btn { display: none; }
+  .header .in-btn { display: inline-grid; }
   .mobile-nav { display: none !important; }
 }
 @media (prefers-reduced-motion: reduce) {
