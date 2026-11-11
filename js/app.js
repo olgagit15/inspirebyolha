@@ -68,7 +68,7 @@ function renderHome() {
     '<div class="hero-photo rv"><img src="assets/images/profile/olga.webp" alt="' + u('name') + '" width="720" height="1053" fetchpriority="high"></div>' +
     '<div class="rv hero-copy"><p class="hero-hi">' + u('hi') + '</p><h1 class="hero-title">' + u('heroTitle') + '</h1>' +
       '<p class="hero-pitch">' + u('heroPitch') + '</p>' +
-      '<div class="hero-cta"><a class="btn btn-primary" href="#/contact">' + u('contact') + ' <span class="arr">→</span></a>' +
+      '<div class="hero-cta"><a class="btn btn-primary" href="https://t.me/millway_o" target="_blank" rel="noopener noreferrer">' + u('contact') + ' <span class="arr">→</span></a>' +
       '<a class="btn btn-secondary" href="#/cases">' + u('seeCases') + '</a></div>' +
       '</div>' +
   '</div></section>' +
