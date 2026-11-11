@@ -29,9 +29,15 @@ site/
             └── strava-match/
 ```
 
-Repository documentation is indexed in [`docs/README.md`](docs/README.md). See [`docs/make-changes.md`](docs/make-changes.md) for development instructions and [`docs/design-system.md`](docs/design-system.md) for the visual style reference.
-
 Scripts are regular browser scripts loaded in dependency order at the end of `site/index.html`: portfolio data, reusable blocks, then the app. Keep this order when adding another script.
+
+## Documentation
+
+| Doc | What it covers |
+|---|---|
+| [README.md](README.md) | Project overview and repository structure |
+| [make-changes.md](docs/make-changes.md) | Local preview, editing content, adding cases, checking changes, and deployment |
+| [design-system.md](docs/design-system.md) | Colors, typography, design tokens, reusable components, breakpoints, accessibility, and style usage |
 
 ## Deploy
 
