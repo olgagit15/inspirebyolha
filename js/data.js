@@ -182,6 +182,9 @@ var CASES = [
   }
 ];
 
+CASES = CASES.filter(function (c) { return c.id !== 'review-analysis'; })
+  .concat(CASES.filter(function (c) { return c.id === 'review-analysis'; }));
+
 var REVIEWS = [
   { en: 'Unsupported email provider', uk: 'Непідтримуваний поштовий провайдер', v: 19.7, n: 53 },
   { en: 'Confusing UX', uk: 'Заплутаний UX', v: 11.2 },
