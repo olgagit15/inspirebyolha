@@ -1,8 +1,7 @@
-# Portfolio documentation
+# Documentation
 
-| Document | What it covers |
+| Doc | What it covers |
 |---|---|
-| [Project README](../README.md) | Project overview, repository structure, local setup, adding cases, validation, and deployment |
-| [Design system](design-system.md) | Current color and typography tokens, reusable components, responsive breakpoints, accessibility, and style usage |
-
-Update this index when adding documentation so the repository has one place to discover its guides.
+| [README.md](../README.md) | Project overview and repository structure |
+| [make-changes.md](make-changes.md) | Local preview, editing content, adding cases, checking changes, and deployment |
+| [design-system.md](design-system.md) | Colors, typography, design tokens, reusable components, breakpoints, accessibility, and style usage |
