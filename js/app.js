@@ -289,7 +289,7 @@ document.addEventListener('click', function (e) {
   var languageButton = e.target.closest('[data-lang]');
   var caseCardEl = e.target.closest('.case-card');
   var imageButton = e.target.closest('[data-lb]');
-  var contactLink = e.target.closest('a[href^="mailto:"], a[href*="linkedin.com"]');
+  var contactLink = e.target.closest('a[href^="mailto:"], a[href*="linkedin.com"], a[href*="t.me/"]');
 
   // Відстежуємо лише потрібні взаємодії, не передаючи персональні дані.
   if (cvLink) {
@@ -311,7 +311,7 @@ document.addEventListener('click', function (e) {
     var contactLocation = contactLink.closest('#header') ? 'header' : (contactLink.closest('#contact-footer') ? 'footer' : '');
     if (contactLocation && typeof gtag === 'function') {
       gtag('event', 'contact_click', {
-        method: contactLink.getAttribute('href').indexOf('mailto:') === 0 ? 'email' : 'linkedin',
+        method: contactLink.getAttribute('href').indexOf('mailto:') === 0 ? 'email' : (contactLink.getAttribute('href').indexOf('t.me/') > -1 ? 'telegram' : 'linkedin'),
         location: contactLocation
       });
     }

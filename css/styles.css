@@ -253,6 +253,7 @@ html.js .rec.rv.in:hover { transform: translateY(-2px); }
 .contact h2 { font-size: clamp(32px, 4vw, 48px); line-height: 1; font-weight: 500; letter-spacing: -.05em; }
 .contact .lead { color: var(--muted); font-size: 18px; margin: 18px auto 36px; max-width: 46ch; }
 .contact-links { display: grid; gap: 12px; max-width: 760px; margin: 0 auto; }
+.contact-links .contact-link:last-child { grid-column: 1 / -1; width: min(100%, 380px); justify-self: center; }
 .contact-link { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 76px; padding: 0 28px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 19px; text-decoration: none; transition: background-color .18s, color .18s, border-color .18s; }
 .contact-link:hover { background: color-mix(in srgb, var(--surface) 88%, var(--bg)); color: var(--accent); border-color: var(--accent); }
 #contact-footer .contact-links .contact-link { background: #FFFFFF; color: #252525; border-color: #E8E5E6; transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
