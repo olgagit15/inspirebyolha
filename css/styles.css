@@ -143,6 +143,23 @@ button.tag[aria-pressed="true"] { background: var(--text); color: var(--bg); bor
 .card-foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .card-foot .tag { margin-left: auto; }
 .case-card:hover .btn .arr { transform: translateX(3px); }
+.cases-coming { display: flex; flex-direction: column; overflow: hidden; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.cases-coming-art { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: radial-gradient(ellipse at 50% 45%, var(--cover-soft), transparent 68%), var(--surface-2); }
+.cases-coming-orbit { position: absolute; width: 64%; aspect-ratio: 1; border: 1px solid var(--cover-soft); border-radius: 50%; }
+.cases-coming-note { position: relative; z-index: 1; display: flex; width: 42%; aspect-ratio: .88; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); box-shadow: 0 14px 32px rgba(0,0,0,.09); transform: rotate(-6deg); }
+.cases-coming-label { align-self: flex-start; color: var(--faint); font: 600 clamp(7px, .7vw, 10px)/1 var(--font-accent); letter-spacing: .12em; }
+.cases-coming-note svg { width: 42%; color: var(--cover); }
+.cases-coming-lines { width: 70%; height: 5px; border-radius: 99px; background: var(--border); }
+.cases-coming-lines.short { width: 48%; align-self: flex-start; margin-left: 15%; }
+.cases-coming-star { position: absolute; color: var(--cover); font-size: clamp(20px, 3vw, 34px); line-height: 1; }
+.cases-coming-star.star-one { top: 27%; left: 24%; }
+.cases-coming-star.star-two { right: 23%; bottom: 25%; font-size: clamp(14px, 2vw, 22px); }
+.cases-coming-copy { display: flex; flex: 1; flex-direction: column; justify-content: center; padding: 18px 22px 20px; text-align: center; }
+.cases-coming-copy h3 { font: 600 clamp(24px, 3vw, 34px)/1.08 var(--font-accent); letter-spacing: -.045em; }
+.cases-coming-copy p { display: inline-block; align-self: center; margin-top: 6px; padding: 2px 14px 5px; border-radius: 99px; background: linear-gradient(90deg, var(--cover-soft), var(--accent-soft)); color: var(--muted); font: 500 clamp(16px, 2vw, 22px)/1.3 var(--font-accent); }
+.cases-coming-rule { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto 0; width: min(80%, 220px); color: var(--faint); }
+.cases-coming-rule span { flex: 1; height: 1px; background: var(--border); }
+.cases-coming-rule svg { width: 20px; height: 20px; }
 .empty-note { color: var(--muted); padding: 24px 4px; }
 
 /* covers */

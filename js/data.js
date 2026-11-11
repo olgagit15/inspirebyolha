@@ -51,6 +51,8 @@ var UI = {
   all: { en: 'All', uk: 'Усі' },
   genesis: { en: 'Genesis School cases', uk: 'Кейси Genesis School' },
   personal: { en: 'Personal research', uk: 'Власні дослідження' },
+  moreCasesTitle: { en: 'More cases', uk: 'Нові кейси' },
+  moreCasesSoon: { en: 'are coming soon', uk: 'незабаром' },
   readCase: { en: 'Read case', uk: 'Читати кейс' },
   showing: { en: 'Cases with', uk: 'Кейси з навичкою' },
   clear: { en: 'Clear', uk: 'Скинути' },
@@ -258,7 +260,7 @@ var RECS = [
     role: { en: 'Senior Software Engineer', uk: 'Senior Software Engineer' },
     rel: { en: 'Same team at Roosh', uk: 'Одна команда в Roosh' },
     when: { en: 'Nov 2026', uk: 'листопад 2026' },
-    text: 'I worked with Olga at Roosh and really appreciated having her on the team. Her main responsibilities were QA and annotation, but she was always interested in the bigger picture. She brought valuable domain knowledge to the team, noticed when something didn\u2019t quite match the product requirements, and took the initiative to reach out to stakeholders to clarify things. I especially appreciated how much she cared about the product beyond her assigned tasks. She often came up with ideas for improvements and genuinely thought about how people would use what we were building. Olga was a great colleague to work with, and I\u2019d gladly work with\u2026',
+    text: 'I worked with Olga at Roosh and really appreciated having her on the team. Her main responsibilities were QA and annotation, but she was always interested in the bigger picture. She brought valuable domain knowledge to the team, noticed when something didn\u2019t quite match the product requirements, and took the initiative to reach out to stakeholders to clarify things. I especially appreciated how much she cared about the product beyond her assigned tasks. She often came up with ideas for improvements and genuinely thought about how people would use what we were building. Olga was a great colleague to work with, and I\u2019d gladly work with her again!',
     url: REC_URL
   },
   {
