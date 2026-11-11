@@ -77,8 +77,7 @@ function renderHome() {
     '<div class="about-card rv"><ol class="career">' + JOBS.map(function (j) {
       return '<li><span class="career-when">' + t(j.when) + '</span><div><span class="career-role">' + t(j.role) + '</span>' + (j.path ? '<span class="career-path">' + t(j.path) + '</span>' : '') + '<span class="career-co">' + t(j.co) + '</span></div></li>';
     }).join('') + '</ol>' +
-    '<div class="about-side"><div class="fact"><p class="eyebrow">' + u('domains') + '</p><p>Healthcare · Legaltech</p></div>' +
-    '<div class="fact"><p class="eyebrow">' + u('langs') + '</p><p>' + u('langsText') + '</p></div></div></div>' +
+    '<div class="about-side"><div class="fact"><p class="eyebrow">' + u('domains') + '</p><p>Healthcare · Legaltech</p></div></div></div>' +
     '<div class="skill-group experience-power rv"><h3>Power skills</h3><div class="tags">' + POWER_SKILLS.map(function (s) {
       return '<span class="tag skill">' + t(s) + '</span>';
     }).join('') + '</div></div></div></section>' +

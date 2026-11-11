@@ -43,8 +43,6 @@ var UI = {
   focus: { en: 'Focus', uk: 'Фокус' },
   focusText: { en: 'Product discovery, market research, product analytics, hypotheses and prioritization', uk: 'Product discovery, дослідження ринку, продуктова аналітика, гіпотези та пріоритизація' },
   based: { en: 'Based in', uk: 'Локація' },
-  langs: { en: 'Languages', uk: 'Мови' },
-  langsText: { en: 'Ukrainian (native)', uk: 'Українська (рідна)' },
   outside: { en: 'Outside work', uk: 'Поза роботою' },
   outsideText: { en: 'I sing — usually on stage.', uk: 'Я співаю — зазвичай на сцені.' },
   casesTitle: { en: 'Cases', uk: 'Кейси' },
