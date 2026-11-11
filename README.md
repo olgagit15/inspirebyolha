@@ -8,19 +8,14 @@ The site includes a home page with experience, case studies, skills, speaking, c
 
 ![Portfolio homepage preview](docs/images/portfolio-home.png)
 
-## Main files
+## Documentation
 
-| File | Purpose |
+| File | What it covers |
 |---|---|
-| [`site/index.html`](site/index.html) | Page shell |
+| [`site/index.html`](site/index.html) | Portfolio page structure |
 | [`site/js/app.js`](site/js/app.js) | Page rendering and interactions |
 | [`site/js/data.js`](site/js/data.js) | Portfolio content and translations |
 | [`site/css/styles.css`](site/css/styles.css) | Visual styles and responsive layouts |
-
-## Documentation
-
-| Doc | What it covers |
-|---|---|
 | [make-changes.md](docs/make-changes.md) | How to preview the portfolio, update its content, add a case, and check changes |
 | [design-system.md](docs/design-system.md) | Colors, fonts, and layout styles used throughout the portfolio |
 
