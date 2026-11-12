@@ -18,7 +18,12 @@
 <script>
   (function () {
     var d = document.documentElement;
-    d.dataset.theme = 'light';
+    var theme = 'dark';
+    try {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') theme = savedTheme;
+    } catch (e) {}
+    d.dataset.theme = theme;
     d.classList.add('js');
   })();
 </script>

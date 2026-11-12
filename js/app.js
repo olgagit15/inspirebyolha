@@ -5,6 +5,8 @@ var data = window.PortfolioData;
 var UI = data.UI;
 var SEG = data.SEG;
 var CASES = data.CASES;
+var CASES_IN_ORDER = CASES.filter(function (c) { return c.id !== 'market-research'; })
+  .concat(CASES.filter(function (c) { return c.id === 'market-research'; }));
 var REVIEWS = data.REVIEWS;
 var SKILLS = data.SKILLS;
 var POWER_SKILLS = data.POWER_SKILLS;
@@ -18,6 +20,8 @@ var NAV = data.NAV;
 
 /* ================= state & helpers ================= */
 var lang = 'en';
+var selectedNav = null;
+var navHighlightTimer = null;
 try { var sl = localStorage.getItem('lang'); if (sl === 'en' || sl === 'uk') lang = sl; } catch (e) {}
 var filter = 'all';
 var highlight = null; // skill label (EN) used as a stable key
@@ -61,6 +65,12 @@ function figure(src, w, h, cap, cls) {
 
 /* ================= home ================= */
 function caseCard(c) { return PortfolioBlocks.caseCard(c, t, u, cover); }
+function renderCareer() {
+  return '<section class="block about-experience"><div class="about-card rv"><ol class="career">' + JOBS.map(function (j) {
+      return '<li><span class="career-when">' + t(j.when) + '</span><div><span class="career-role">' + t(j.role) + '</span>' + (j.path ? '<span class="career-path">' + t(j.path) + '</span>' : '') + '<span class="career-co">' + t(j.co) + '</span></div></li>';
+    }).join('') + '</ol>' +
+    '<div class="about-side"><div class="fact"><p class="eyebrow">' + u('domains') + '</p><p>Healthcare · Legaltech</p></div></div></div></section>';
+}
 function renderHome() {
   var segs = [];
   var html = '' +
@@ -68,25 +78,16 @@ function renderHome() {
     '<div class="hero-photo rv"><img src="assets/images/profile/olga.webp" alt="' + u('name') + '" width="720" height="1053" fetchpriority="high"></div>' +
     '<div class="rv hero-copy"><p class="hero-hi">' + u('hi') + '</p><h1 class="hero-title">' + u('heroTitle') + '</h1>' +
       '<p class="hero-pitch">' + u('heroPitch') + '</p>' +
-      '<div class="hero-cta"><a class="btn btn-primary" href="https://t.me/millway_o" target="_blank" rel="noopener noreferrer">' + u('contact') + ' <span class="arr">→</span></a>' +
+      '<div class="hero-cta"><a class="btn btn-primary" href="https://t.me/millway_o" target="_blank" rel="noopener noreferrer">' + u('contactMe') + '</a>' +
       '<a class="btn btn-secondary" href="#/cases">' + u('seeCases') + '</a></div>' +
       '</div>' +
   '</div></section>' +
 
-  '<section class="block" id="experience" data-sec="experience" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('expTitle') + '</h2></div>' +
-    '<div class="about-card rv"><ol class="career">' + JOBS.map(function (j) {
-      return '<li><span class="career-when">' + t(j.when) + '</span><div><span class="career-role">' + t(j.role) + '</span>' + (j.path ? '<span class="career-path">' + t(j.path) + '</span>' : '') + '<span class="career-co">' + t(j.co) + '</span></div></li>';
-    }).join('') + '</ol>' +
-    '<div class="about-side"><div class="fact"><p class="eyebrow">' + u('domains') + '</p><p>Healthcare · Legaltech</p></div></div></div>' +
-    '<div class="skill-group experience-power rv"><h3>Power skills</h3><div class="tags">' + POWER_SKILLS.map(function (s) {
-      return '<span class="tag skill">' + t(s) + '</span>';
-    }).join('') + '</div></div></div></section>' +
-
-  '<section class="block" id="cases" data-sec="cases" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('casesTitle') + '</h2></div>' +
+  '<section class="block" id="cases" data-sec="cases"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('casesTitle') + '</h2></div>' +
     (segs.length ? '<div class="filters rv" role="group" aria-label="' + u('cases') + '">' + segs.map(function (s) {
       return '<button type="button" class="filter" data-filter="' + s + '" aria-pressed="' + (filter === s) + '">' + u(s) + '</button>';
     }).join('') + '</div>' : '') + '<div id="hlNote"></div>' +
-    '<div class="cases-grid">' + CASES.map(caseCard).join('') +
+    '<div class="cases-grid">' + CASES_IN_ORDER.map(caseCard).join('') +
       '<article class="cases-coming rv" aria-label="' + u('moreCasesTitle') + ' ' + u('moreCasesSoon') + '">' +
         '<div class="cases-coming-art" aria-hidden="true"><div class="cases-coming-orbit"></div>' +
           '<div class="cases-coming-note"><span class="cases-coming-label">IDEA · 01</span>' +
@@ -97,30 +98,32 @@ function renderHome() {
           '<div class="cases-coming-rule"><span></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>' +
         '</div></article></div><p class="empty-note" id="emptyNote" hidden>' + u('empty') + '</p></div></section>' +
 
-  '<section class="block" id="skills" data-sec="skills" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('skillsTitle') + '</h2></div>' +
+  '<section class="block" id="skills" data-sec="skills"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('skillsTitle') + '</h2></div>' +
     '<div class="skills-grid">' + SKILLS.map(function (g) {
       return '<div class="skill-group rv' + (g.wide ? ' wide' : '') + '"><h3>' + t(g.g) + '</h3><div class="tags">' + g.items.map(function (s) {
         var cls = 'tag ' + (g.tool ? 'tool' : 'skill') + (s.c.length >= 2 ? ' key' : '');
         if (!s.c.length) return '<span class="' + cls + '">' + t(s) + '</span>';
         return '<button type="button" class="' + cls + '" data-skill="' + s.en + '" aria-pressed="' + (highlight === s.en) + '">' + t(s) + '</button>';
       }).join('') + '</div></div>';
-    }).join('') + '</div></div></section>' +
+    }).join('') + '<div class="skill-group rv"><h3>' + u('powerSkills') + '</h3><div class="tags">' + POWER_SKILLS.map(function (s) {
+      return '<span class="tag skill">' + t(s) + '</span>';
+    }).join('') + '</div></div></div></section>' +
 
-  '<section class="block" id="speaking" data-sec="speaking" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('speakingTitle') + '</h2></div>' +
+  '<section class="block" id="speaking" data-sec="speaking"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('speakingTitle') + '</h2></div>' +
     TALKS.map(function (k) {
       return '<article class="talk rv"><div class="talk-date"><span class="badge" style="align-self:flex-start;background:var(--surface)">' + u('speaker') + '</span><div><div class="d">' + k.d + '</div><div class="m">' + t(k.m) + '</div></div></div>' +
         '<div><h3>' + t(k.title) + '</h3><div class="talk-meta"><span>' + u('event') + ': <b>' + t(k.event) + '</b></span></div>' +
         '<p class="desc">' + t(k.desc) + '</p></div></article>';
     }).join('') + '</div></section>' +
 
-  '<section class="block" id="certifications" data-sec="certifications" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('certsTitle') + '</h2></div>' +
+  '<section class="block" id="certifications" data-sec="certifications"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('certsTitle') + '</h2></div>' +
     '<div class="certs">' + CERTS.map(function (c) {
       var body = '<div class="cert-body"><p>' + t(c.org) + '</p><p>' + t(c.date) + '</p></div>';
       var action = c.img ? '<button type="button" class="btn btn-secondary btn-sm cert-open" data-lb="' + c.img + '" data-cap="' + t(c.title) + '" aria-label="' + u('certificate') + ': ' + t(c.title) + '">' + u('certificate') + '</button>' : '';
       return '<article class="cert rv"><div class="cert-heading"><h3>' + t(c.title) + '</h3>' + action + '</div>' + body + '</article>';
     }).join('') + '</div></div></section>' +
 
-  '<section class="block" id="recommendations" data-sec="recommendations" style="padding-top:0"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('recommendations') + '</span><h2 class="sec-title">' + u('recTitle') + '</h2></div>' +
+  '<section class="block" id="recommendations" data-sec="recommendations"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">' + u('recommendations') + '</span><h2 class="sec-title">' + u('recTitle') + '</h2></div>' +
     '<div class="recs">' + RECS.map(function (r) {
       return '<article class="rec rv"><span class="rec-mark" aria-hidden="true">\u201C</span>' +
         '<blockquote lang="en"><p>' + r.text + '</p></blockquote>' +
@@ -132,10 +135,16 @@ function renderHome() {
   return html;
 }
 
+function renderAbout() {
+  return '<article class="about-page"><div class="wrap">' +
+    '<a class="back" href="#/"><span aria-hidden="true">←</span> ' + u('backHome') + '</a>' +
+    renderCareer() + '</div></article>';
+}
+
 /* ================= case page ================= */
 function renderCase(c) {
   var lead = c.detailLead == null ? t(c.line) : t(c.detailLead);
-  var i = CASES.indexOf(c), next = CASES[(i + 1) % CASES.length];
+  var i = CASES_IN_ORDER.indexOf(c), next = CASES_IN_ORDER[(i + 1) % CASES_IN_ORDER.length];
   var secs = c.sections.slice();
   var visual = c.cover === 'phone'
     ? '<div class="case-visual rv"><div class="cover cv-phone"><img src="assets/images/cases/strava-match/strava-1.webp" alt="Strava.Match — home with match notification" width="438" height="824"><img src="assets/images/cases/strava-match/strava-2.webp" alt="Strava.Match — onboarding: find a partner who actually shows up" width="444" height="818"><img src="assets/images/cases/strava-match/strava-3.webp" alt="Strava.Match — fitness level question" width="420" height="816"></div></div>'
@@ -164,7 +173,7 @@ function renderCase(c) {
   return '<article class="case-page"><div class="wrap">' +
     '<a class="back" href="#/cases"><span aria-hidden="true">←</span> ' + u('allCases') + '</a>' +
     '<header class="case-hero rv"><h1 tabindex="-1">' + t(c.title) + '</h1>' + (lead ? '<p class="lead">' + lead + '</p>' : '') +
-      (c.team ? '<div class="meta-row"><div class="item"><p class="eyebrow">' + u('format') + '</p><p><span class="badge">' + u('teamProject') + '</span></p></div></div>' : '') +
+      (c.team ? '<div class="meta-row"><div class="item"><p class="eyebrow">' + u('format') + '</p><p><span class="badge">' + u(c.teamLabel || 'teamProject') + '</span></p></div></div>' : '') +
       '</header>' + visual +
     '<div class="case-layout"><nav class="toc" aria-label="' + u('story') + '"><p class="eyebrow">' + u('story') + '</p><ol>' + toc + '</ol></nav>' +
     '<div class="case-sections">' + body + docs + kit +
@@ -179,7 +188,24 @@ function renderNav() {
   $('#mobileNav').innerHTML = links + '<a href="https://www.linkedin.com/in/olhatereshchenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn btn-primary" href="assets/documents/Olga_Tereshchenko_CV.pdf" target="_blank" rel="noopener" data-cv style="color:var(--bg);border:0;justify-content:center">' + u('cv') + '</a>';
 }
 function setActive(k) {
-  $$('[data-nav]').forEach(function (a) { var on = a.dataset.nav === k; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+  $$('[data-nav]').forEach(function (a) {
+    a.classList.toggle('active', a.dataset.nav === selectedNav);
+    if (a.dataset.nav === k) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  });
+}
+function highlightNav(k) {
+  selectedNav = k;
+  $$('[data-nav].highlight-expired').forEach(function (a) { a.classList.remove('highlight-expired'); });
+  if (navHighlightTimer) window.clearTimeout(navHighlightTimer);
+  navHighlightTimer = window.setTimeout(function () {
+    selectedNav = null;
+    $$('[data-nav]').forEach(function (a) {
+      if (a.dataset.nav !== k) return;
+      a.classList.remove('active');
+      if (a.matches(':hover')) a.classList.add('highlight-expired');
+    });
+    navHighlightTimer = null;
+  }, 3000);
 }
 function applyStatic() {
   document.documentElement.lang = lang === 'uk' ? 'uk' : 'en';
@@ -196,10 +222,12 @@ function parse() {
   var h = location.hash.replace(/^#\/?/, '');
   var m = h.match(/^case\/([\w-]+)/);
   if (m) return { view: 'case', id: m[1] };
+  if (h === 'about') return { view: 'about' };
   return { view: 'home', sec: NAV.indexOf(h) > -1 || h === 'skills' ? h : '' };
 }
 function render(scroll) {
   var r = parse(), app = $('#app');
+  app.dataset.view = r.view;
   if (spy) spy.disconnect();
   if (r.view === 'case') {
     var c = caseById(r.id);
@@ -209,6 +237,11 @@ function render(scroll) {
     setActive('cases');
     if (scroll) { window.scrollTo(0, 0); var h1 = $('h1', app); if (h1) h1.focus({ preventScroll: true }); }
     watchToc();
+  } else if (r.view === 'about') {
+    app.innerHTML = renderAbout();
+    document.title = u('about') + ' — ' + u('name');
+    setActive('about');
+    if (scroll) window.scrollTo(0, 0);
   } else {
     app.innerHTML = renderHome();
     document.title = u('name') + ' — Product Manager';
@@ -216,7 +249,7 @@ function render(scroll) {
     var sec = r.sec && r.sec !== 'home' ? r.sec : '';
     if (scroll) {
       var target = sec && document.getElementById(sec);
-      if (target) { revealAll(); target.scrollIntoView(); target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
+      if (target) { target.scrollIntoView(); target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
       else window.scrollTo(0, 0);
     }
     setActive(sec || 'home');
@@ -297,6 +330,7 @@ document.addEventListener('click', function (e) {
   }
   if (cvDownload && typeof gtag === 'function') gtag('event', 'cv_download');
   if (navLink) {
+    if (navLink.dataset.nav) highlightNav(navLink.dataset.nav);
     var href = navLink.getAttribute('href') || '';
     var linkTarget = href.indexOf('#/') === 0 ? href : (navLink.hasAttribute('data-cv') ? 'cv' : 'linkedin');
     if (typeof gtag === 'function') gtag('event', 'nav_click', {
@@ -354,10 +388,15 @@ document.addEventListener('click', function (e) {
   else if (el.id === 'themeBtn') {
     var th = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = th;
+    try { localStorage.setItem('theme', th); } catch (x) {}
     if (typeof gtag === 'function') gtag('event', 'theme_toggle', { theme: th });
   }
   else if (el.id === 'menuBtn') { var open = !$('#mobileNav').classList.contains('open'); $('#mobileNav').classList.toggle('open', open); el.setAttribute('aria-expanded', String(open)); }
   else if (el.dataset.toc) { e.preventDefault(); var s = document.getElementById(el.dataset.toc); if (s) s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+});
+document.addEventListener('pointerout', function (e) {
+  var a = e.target.closest('[data-nav].highlight-expired');
+  if (a && (!e.relatedTarget || !a.contains(e.relatedTarget))) a.classList.remove('highlight-expired');
 });
 function closeMenu() { $('#mobileNav').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false'); }
 document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
