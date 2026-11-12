@@ -154,12 +154,11 @@ button.tag[aria-pressed="true"] { background: var(--text); color: var(--bg); bor
 .cases-coming-star { position: absolute; color: var(--cover); font-size: clamp(20px, 3vw, 34px); line-height: 1; }
 .cases-coming-star.star-one { top: 27%; left: 24%; }
 .cases-coming-star.star-two { right: 23%; bottom: 25%; font-size: clamp(14px, 2vw, 22px); }
-.cases-coming-copy { display: flex; flex: 1; flex-direction: column; justify-content: center; padding: 18px 22px 20px; text-align: center; }
-.cases-coming-copy h3 { font: 600 clamp(24px, 3vw, 34px)/1.08 var(--font-accent); letter-spacing: -.045em; }
-.cases-coming-copy p { display: inline-block; align-self: center; margin-top: 6px; padding: 2px 14px 5px; border-radius: 99px; background: linear-gradient(90deg, var(--cover-soft), var(--accent-soft)); color: var(--muted); font: 500 clamp(16px, 2vw, 22px)/1.3 var(--font-accent); }
-.cases-coming-rule { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto 0; width: min(80%, 220px); color: var(--faint); }
-.cases-coming-rule span { flex: 1; height: 1px; background: var(--border); }
-.cases-coming-rule svg { width: 20px; height: 20px; }
+.cases-coming .cases-cta { transition: background .2s ease, box-shadow .2s ease, transform .2s ease; }
+.cases-coming .cases-cta:hover { background: #e8b4c4; color: #111; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(232, 180, 196, .45); }
+.cases-coming .cases-cta:hover .arr { transform: translateX(4px); }
+.cases-coming .cases-cta:focus-visible { outline: 3px solid var(--cover); outline-offset: 3px; }
+.cases-coming .cases-cta .arr { transition: transform .2s ease; }
 .empty-note { color: var(--muted); padding: 24px 4px; }
 
 /* covers */

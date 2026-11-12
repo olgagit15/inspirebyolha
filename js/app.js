@@ -88,14 +88,15 @@ function renderHome() {
       return '<button type="button" class="filter" data-filter="' + s + '" aria-pressed="' + (filter === s) + '">' + u(s) + '</button>';
     }).join('') + '</div>' : '') + '<div id="hlNote"></div>' +
     '<div class="cases-grid">' + CASES_IN_ORDER.map(caseCard).join('') +
-      '<article class="cases-coming rv" aria-label="' + u('moreCasesTitle') + ' ' + u('moreCasesSoon') + '">' +
+      '<article class="cases-coming rv">' +
         '<div class="cases-coming-art" aria-hidden="true"><div class="cases-coming-orbit"></div>' +
           '<div class="cases-coming-note"><span class="cases-coming-label">IDEA · 01</span>' +
             '<svg viewBox="0 0 64 64" fill="none"><path d="M22 40.5c0-5.3-7-8-7-17a17 17 0 1 1 34 0c0 9-7 11.7-7 17H22Z" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M24 46h16m-14 5h12m-10 5h8M32 1v5M9.5 9.5l4 4m37-4-4 4M3 25h6m46 0h6" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>' +
             '<span class="cases-coming-lines"></span><span class="cases-coming-lines short"></span>' +
           '</div><span class="cases-coming-star star-one">✳</span><span class="cases-coming-star star-two">✳</span>' +
-        '</div><div class="cases-coming-copy"><h3>' + u('moreCasesTitle') + '</h3><p>' + u('moreCasesSoon') + '</p>' +
-          '<div class="cases-coming-rule"><span></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>' +
+        '</div><div class="case-body"><h3 class="case-title">' + u('workTogetherTitle') + '</h3>' +
+          '<p class="case-line">' + u('workTogetherLead') + '</p>' +
+          '<div class="card-foot"><a class="btn btn-primary btn-sm cases-cta" href="https://t.me/millway_o" target="_blank" rel="noopener noreferrer">' + u('workTogetherCta') + ' <span class="arr" aria-hidden="true">→</span></a></div>' +
         '</div></article></div><p class="empty-note" id="emptyNote" hidden>' + u('empty') + '</p></div></section>' +
 
   '<section class="block" id="skills" data-sec="skills"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('skillsTitle') + '</h2></div>' +
