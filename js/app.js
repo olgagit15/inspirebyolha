@@ -101,7 +101,7 @@ function renderHome() {
 
   '<section class="block" id="skills" data-sec="skills"><div class="wrap"><div class="sec-head rv"><h2 class="sec-title">' + u('skillsTitle') + '</h2></div>' +
     '<div class="skills-grid">' + SKILLS.map(function (g) {
-      return '<div class="skill-group rv' + (g.wide ? ' wide' : '') + '"><h3>' + t(g.g) + '</h3><div class="tags">' + g.items.map(function (s) {
+      return '<div class="skill-group rv' + (g.wide ? ' wide' : '') + (g.tool ? ' tools' : '') + '"><h3>' + t(g.g) + '</h3><div class="tags">' + g.items.map(function (s) {
         var cls = 'tag ' + (g.tool ? 'tool' : 'skill') + (s.c.length >= 2 ? ' key' : '');
         if (!s.c.length) return '<span class="' + cls + '">' + t(s) + '</span>';
         return '<button type="button" class="' + cls + '" data-skill="' + s.en + '" aria-pressed="' + (highlight === s.en) + '">' + t(s) + '</button>';
