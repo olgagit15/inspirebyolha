@@ -562,7 +562,7 @@
         en: "Product Metrics and Analytics",
         uk: "Product Metrics and Analytics",
       },
-      org: { en: "Andrii Mandrika’s course", uk: "Курс Андрія Мандріки" },
+      org: { en: "Hard Skills for PMs", uk: "Hard Skills for PMs" },
       date: { en: "Aug – Oct 2026", uk: "серп – жовт 2026" },
     },
     {
