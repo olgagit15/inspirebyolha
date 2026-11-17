@@ -53,8 +53,8 @@
       uk: "<strong>Product Manager</strong>",
     },
     heroPitch: {
-      en: "3+ years of experience driving AI initiatives from Discovery to MVP launch in Healthcare and Legaltech startups. I am certified by Genesis IT Product School and Andrii Mandrika’s Product Metrics & Analytics Course, with practical expertise in market research, product analytics, process coordination, and quality evaluation. I combine a legal background with structured analytical thinking and metric-driven decision-making.",
-      uk: "Понад 3 роки досвіду в AI-ініціативах від Discovery до запуску MVP у стартапах у сферах Healthcare і Legaltech. Маю сертифікати Genesis IT Product School та курсу Product Metrics & Analytics від Андрія Мандріки, практичний досвід у market research, продуктовій аналітиці, координації процесів і оцінці якості. Поєдную юридичну освіту зі структурним аналітичним мисленням і рішеннями на основі метрик.",
+      en: "3+ years of experience driving AI initiatives from Discovery to MVP launch in Healthcare and Legaltech startups. I am certified by Genesis IT School, with practical expertise in market research, product analytics, process coordination, and quality evaluation. I combine a legal background with structured analytical thinking and metric-driven decision-making.",
+      uk: "Понад 3 роки досвіду в AI-ініціативах від Discovery до запуску MVP у стартапах у сферах Healthcare і Legaltech. Маю сертифікати Genesis IT School, практичний досвід у market research, продуктовій аналітиці, координації процесів і оцінці якості. Поєдную юридичну освіту зі структурним аналітичним мисленням і рішеннями на основі метрик.",
     },
     seeCases: { en: "See cases", uk: "Дивитися кейси" },
     domains: { en: "Domains", uk: "Домени" },
