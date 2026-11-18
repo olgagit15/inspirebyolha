@@ -1042,6 +1042,28 @@ button.tag[aria-pressed="true"] {
   letter-spacing: -0.01em;
 }
 
+/* skills & tools tags (home + case pages): static, hover effect only */
+.skills-grid .tag,
+.kit .tag {
+  cursor: var(--paw);
+}
+.skills-grid .tag.tool,
+.kit .tag.tool {
+  color: var(--text);
+}
+.skills-grid .tag.tool::before,
+.kit .tag.tool::before {
+  content: none;
+}
+@media (hover: hover) {
+  .skills-grid .tag:hover,
+  .kit .tag:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+}
+
 /* experience */
 .career {
   list-style: none;
