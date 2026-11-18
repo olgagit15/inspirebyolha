@@ -1,0 +1,84 @@
+<!-- 
+  =============================================================================
+  STASHED COMPONENT: Open CV Button
+  =============================================================================
+  Статус: Тимчасово приховано, поки оновлюється файл CV (assets/documents/Olga_Tereshchenko_CV.pdf).
+  Status: Temporarily hidden while the CV is being reworked.
+  =============================================================================
+
+  1. ДЕСКТОПНА КНОПКА В HEADER (index.html, рядок ~104 всередині .header-actions):
+  -----------------------------------------------------------------------------
+  Вставити між LinkedIn іконкою (.icon-btn.in-btn) та кнопкою мобільного меню (#menuBtn):
+
+  <a
+    class="btn btn-primary btn-sm cv-btn"
+    href="assets/documents/Olga_Tereshchenko_CV.pdf"
+    target="_blank"
+    rel="noopener"
+    data-cv
+    data-i18n="cv"
+    >Open CV</a
+  >
+
+  2. КНОПКА В МОБІЛЬНОМУ МЕНЮ (js/app.js, функція renderNav):
+  -----------------------------------------------------------------------------
+  Усередині renderNav() додати до innerHTML:
+
+  $('#mobileNav').innerHTML = links + '<a href="https://www.linkedin.com/in/olhatereshchenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn btn-primary" href="assets/documents/Olga_Tereshchenko_CV.pdf" target="_blank" rel="noopener" data-cv style="color:var(--bg);border:0;justify-content:center">' + u('cv') + '</a>';
+
+  3. ПОВ'ЯЗАНИЙ МОДАЛЬНИЙ ДІАЛОГ ДЛЯ ПЕРЕГЛЯДУ CV (index.html, перед <script>):
+  -----------------------------------------------------------------------------
+  Залишається в index.html (за замовчуванням прихований браузером):
+
+  <dialog class="cvv" id="cvv" aria-labelledby="cvvTitle">
+    <div class="cvv-bar">
+      <p class="cvv-title" id="cvvTitle"></p>
+      <a
+        class="btn btn-primary btn-sm"
+        id="cvvDl"
+        href="assets/documents/Olga_Tereshchenko_CV.pdf"
+        download="Olga_Tereshchenko_CV.pdf"
+        ><span id="cvvDlT"></span>
+        <span class="arr" aria-hidden="true">↓</span></a
+      >
+      <button type="button" class="icon-btn" id="cvvClose">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+    <iframe
+      class="cvv-frame"
+      id="cvvFrame"
+      title="CV"
+      loading="lazy"
+    ></iframe>
+  </dialog>
+
+  4. СТИЛІ ТА ЛОКАЛІЗАЦІЯ (вже збережені в проєкті):
+  -----------------------------------------------------------------------------
+  - Локалізація в js/data.js:
+      UI.cv = { en: "Open CV", uk: "Відкрити CV" };
+      UI.cvDownload = { en: "Download", uk: "Завантажити" };
+      UI.cvClose = { en: "Close", uk: "Закрити" };
+  - Стилі в css/styles.css:
+      .cv-btn та .header .cv-btn (стилі адаптивності збережені й готові до роботи).
+  - Скрипти в js/app.js:
+      Обробка кліків на [data-cv], Google Analytics події cv_open, функція openCv().
+-->
+<a
+  class="btn btn-primary btn-sm cv-btn"
+  href="assets/documents/Olga_Tereshchenko_CV.pdf"
+  target="_blank"
+  rel="noopener"
+  data-cv
+  data-i18n="cv"
+  >Open CV</a
+>

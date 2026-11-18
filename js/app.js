@@ -185,7 +185,8 @@ function renderCase(c) {
 function renderNav() {
   var links = NAV.map(function (k) { return '<a href="#/' + (k === 'home' ? '' : k) + '" data-nav="' + k + '">' + u(k) + '</a>'; }).join('');
   $('#nav').innerHTML = links;
-  $('#mobileNav').innerHTML = links + '<a href="https://www.linkedin.com/in/olhatereshchenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn btn-primary" href="assets/documents/Olga_Tereshchenko_CV.pdf" target="_blank" rel="noopener" data-cv style="color:var(--bg);border:0;justify-content:center">' + u('cv') + '</a>';
+  // Open CV button temporarily hidden while CV is being updated. Saved in drafts/open-cv-button.html
+  $('#mobileNav').innerHTML = links + '<a href="https://www.linkedin.com/in/olhatereshchenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a>';
 }
 function setActive(k) {
   $$('[data-nav]').forEach(function (a) {

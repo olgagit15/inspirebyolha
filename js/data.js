@@ -480,7 +480,9 @@
         { en: "Figma", c: [MR, SM] },
         { en: "Figma Make", c: [MR, SM] },
         { en: "Claude", c: [RA] },
-        { en: "Excel / Google Sheets", c: [RA, ES] },
+        { en: "Antigravity", c: [] },
+        { en: "Higgsfield", c: [] },
+        { en: "CapCut", c: [] },
         { en: "Jira", c: [] },
         { en: "Confluence", c: [] },
         { en: "Linear", c: [] },
@@ -519,7 +521,7 @@
   var JOBS = [
     {
       when: { en: "Nov 2024 – Jul 2026", uk: "лис 2024 – лип 2026" },
-      role: "AI Quality Engineer",
+      role: "AI Data Analyst",
       co: "Roosh",
     },
     {
